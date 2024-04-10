@@ -16,12 +16,6 @@
       "id": "3",
       "name": "printer",
       "price": 100,
-      "checked": false
-    },
-    {
-      "id": "4",
-      "name": "desktop",
-      "price": 10000,
       "checked": true
     }
   ]

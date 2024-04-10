@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
+import {Product} from "../model/product.model";
 
 @Component({
   selector: 'app-products',
@@ -10,14 +11,19 @@ import {ProductService} from "../services/product.service";
 export class ProductsComponent implements OnInit{
   constructor(private ps:ProductService) {
   }
-  products :Array<any>=[];
+  public products :Array<Product>=[];
+  public keyword: string="";
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts(){
     this.ps.getProducts().subscribe({
 
-        next : data => this.products=data,
-        error: err => console.log(err)
-      })
+      next : data => this.products=data,
+      error: err => console.log(err)
+    })
   }
 
   handleCheckProduct(product: any) {
@@ -32,5 +38,23 @@ export class ProductsComponent implements OnInit{
           console.error('Error updating product:', error);
         }
       );
+  }
+
+  handleDeleteProduct(product: Product) {
+    this.ps.deletProduct(product).subscribe({
+      next: value=>{
+        this.getProducts();
+      }
+    })
+
+  }
+
+  searchProduct(keyword: string) {
+    this.ps.getProducts().subscribe({
+      next : value => {
+        this.products = value.filter(product => product.name.toLowerCase().includes(keyword.toLowerCase()))
+      }
+    })
+
   }
 }
