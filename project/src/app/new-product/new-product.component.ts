@@ -25,6 +25,11 @@ export class NewProductComponent implements OnInit{
     let product:Product = this.productForm.value
     this.ps.saveProduct(product).subscribe({
       next:value => {
+        this.productForm = this.fb.group({
+          name : this.fb.control(''),
+          price : this.fb.control(0),
+          checked : this.fb.control(false)
+        })
       }
     })
   }

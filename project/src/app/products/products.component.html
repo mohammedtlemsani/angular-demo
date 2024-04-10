@@ -27,6 +27,11 @@
         </tr>
         </tbody>
       </table>
+      <ul class="nav nav-pills">
+        <li *ngFor="let page of [].constructor(this.totalPages); let i=index">
+          <a (click)="handleGoToPage(i+1)" [ngClass]="currentPage == i+1 ?'btn btn-success m-1' : 'btn btn-outline-success m-1'">{{i+1}}</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
