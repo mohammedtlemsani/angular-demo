@@ -23,6 +23,7 @@
           <td>{{product.name}}</td>
           <td>{{product.price}}</td>
           <td><a [class]="product.checked ?  'btn btn-outline-success' : 'btn btn-outline-danger'" (click)="handleCheckProduct(product)">{{product.checked}}</a></td>
+          <td><a class="btn btn-info" (click)="handleEditProduct(product)" >Edit</a></td>
           <td><a class="btn btn-danger" (click)="handleDeleteProduct(product)" >Delete</a></td>
         </tr>
         </tbody>

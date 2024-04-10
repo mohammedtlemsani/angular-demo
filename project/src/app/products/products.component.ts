@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -10,7 +11,7 @@ import {Product} from "../model/product.model";
 })
 export class ProductsComponent implements OnInit{
   public totalPages!: number;
-  constructor(private ps:ProductService) {
+  constructor(private ps:ProductService,private router:Router) {
   }
   public products :Array<Product>=[];
   public keyword: string="";
@@ -68,5 +69,10 @@ export class ProductsComponent implements OnInit{
   handleGoToPage(page: number) {
     this.currentPage=page
     this.getProducts(this.currentPage,this.pageSize);
+  }
+
+  handleEditProduct(product: Product) {
+    this.router.navigateByUrl("/editProduct/"+product.id);
+
   }
 }
