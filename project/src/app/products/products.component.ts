@@ -24,8 +24,12 @@ export class ProductsComponent implements OnInit{
       next : resp => {
         this.appState.productState.products=resp.data as Product[]
         this.appState.productState.totalPages =resp.pages
-        this.appState.productState.totalProducts=resp.items},
-      error: err => console.log(err)
+        this.appState.productState.totalProducts=resp.items
+      },
+      error: err => {
+        this.appState.productState.status = "ERROR";
+        this.appState.productState.errorMessage = err.message;
+      }
     })
   }
 

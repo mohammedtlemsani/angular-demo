@@ -12,7 +12,9 @@ export class AppStateService {
     pageSize :3,
     currentPage:1,
     totalPages: 0,
-    totalProducts:0
+    totalProducts:0,
+    status: "",
+    errorMessage:""
   }
   constructor() { }
 }

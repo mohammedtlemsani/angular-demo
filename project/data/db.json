@@ -17,6 +17,30 @@
       "name": "printer",
       "price": 100,
       "checked": true
+    },
+    {
+      "id": "5811",
+      "name": "aquafina",
+      "price": 2,
+      "checked": false
+    },
+    {
+      "id": "543f",
+      "name": "coffee",
+      "price": 8,
+      "checked": true
+    },
+    {
+      "id": "e194",
+      "name": "banane juice",
+      "price": 16,
+      "checked": true
+    },
+    {
+      "id": "8e30",
+      "name": "atay",
+      "price": 12,
+      "checked": true
     }
   ]
 }
