@@ -17,12 +17,6 @@
       "name": "printer",
       "price": 100,
       "checked": true
-    },
-    {
-      "id": "a118",
-      "name": "hamid",
-      "price": 0,
-      "checked": true
     }
   ]
 }

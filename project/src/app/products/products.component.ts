@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Router} from "@angular/router";
+import {AppStateService} from "../services/app-state.service";
 
 @Component({
   selector: 'app-products',
@@ -10,25 +10,21 @@ import {Router} from "@angular/router";
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit{
-  public totalPages!: number;
-  constructor(private ps:ProductService,private router:Router) {
+  constructor(private ps:ProductService,private router:Router,public appState: AppStateService) {
   }
-  public products :Array<Product>=[];
-  public keyword: string="";
-  public pageSize:number=3;
-  public currentPage=1;
+
 
   ngOnInit(): void {
-    this.getProducts(this.currentPage,this.pageSize);
+    this.getProducts(this.appState.productState.currentPage,this.appState.productState.pageSize);
   }
 
   getProducts(page:number=1,size:number=4){
     this.ps.getProducts(page,size).subscribe({
 
       next : resp => {
-        this.products=resp.data as Product[]
-        this.totalPages =resp.pages
-        },
+        this.appState.productState.products=resp.data as Product[]
+        this.appState.productState.totalPages =resp.pages
+        this.appState.productState.totalProducts=resp.items},
       error: err => console.log(err)
     })
   }
@@ -49,7 +45,7 @@ export class ProductsComponent implements OnInit{
 
   handleDeleteProduct(product: Product) {
     this.ps.deleteProduct(product).subscribe({
-      next: value=>{
+      next: ()=>{
         this.getProducts();
       }
     })
@@ -67,8 +63,8 @@ export class ProductsComponent implements OnInit{
   }
 
   handleGoToPage(page: number) {
-    this.currentPage=page
-    this.getProducts(this.currentPage,this.pageSize);
+    this.appState.productState.currentPage=page
+    this.getProducts(this.appState.productState.currentPage,this.appState.productState.pageSize);
   }
 
   handleEditProduct(product: Product) {
