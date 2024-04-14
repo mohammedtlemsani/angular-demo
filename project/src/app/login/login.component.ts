@@ -10,6 +10,7 @@ import {AuthService} from "../services/auth.service";
 })
 export class LoginComponent implements OnInit{
   formLogin! : FormGroup;
+  errorMessage!:any;
   constructor(private fb:FormBuilder,private router:Router,public as:AuthService) {
   }
 
@@ -26,9 +27,10 @@ export class LoginComponent implements OnInit{
     let username = this.formLogin.value.username
     let password = this.formLogin.value.password
     this.as.login(username,password).then(resp=>{
-      this.router.navigateByUrl("/admin/products")
+      this.router.navigateByUrl("/admin")
     })
       .catch(err=>{
+        this.errorMessage=err;
       })
     }
 }

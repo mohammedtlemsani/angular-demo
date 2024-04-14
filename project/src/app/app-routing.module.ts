@@ -6,13 +6,17 @@ import {ProductsComponent} from "./products/products.component";
 import {EditProductComponent} from "./edit-product/edit-product.component";
 import {LoginComponent} from "./login/login.component";
 import {AdminTemplateComponent} from "./admin-template/admin-template.component";
+import {AuthenticationGuard} from "./guards/authentication.guard";
+import {AuthorizationGuard} from "./guards/authorization.guard";
+import {NotAuthorizedComponent} from "./not-authorized/not-authorized.component";
 
 const routes: Routes = [
-  {path:"admin",component:AdminTemplateComponent, children:[
+  {path:"admin",component:AdminTemplateComponent,canActivate:[AuthenticationGuard], children:[
       {path : "products" , component : ProductsComponent},
-      {path : "newProduct" , component : NewProductComponent},
-      {path : "editProduct/:id" , component : EditProductComponent},
-      {path : "home" , component : HomeComponent}
+      {path : "newProduct" , component : NewProductComponent,canActivate:[AuthorizationGuard]},
+      {path : "editProduct/:id" , component : EditProductComponent,canActivate:[AuthorizationGuard]},
+      {path : "home" , component : HomeComponent},
+      {path:"notAuthorized",component:NotAuthorizedComponent}
     ]},
   {path : "login" , component : LoginComponent},
   {path: "", redirectTo:"login",pathMatch:"full"}];

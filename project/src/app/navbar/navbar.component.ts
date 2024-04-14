@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AppStateService} from "../services/app-state.service";
 import {LoadingService} from "../services/loading.service";
+import {Router, RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +15,19 @@ export class NavbarComponent {
     {title : "New Product",route : "/admin/newProduct", icon : "save"}
   ]
   currentAction :any;
-  constructor(public appState:AppStateService,public loadingService:LoadingService) {
+  constructor(public appState:AppStateService,public loadingService:LoadingService,public router:Router) {
   }
 
   setCurrentAction(action: any) {
     this.currentAction = action;
+  }
+
+  logout() {
+    this.appState.authState={}
+    this.router.navigateByUrl("/login")
+  }
+
+  login() {
+    this.router.navigateByUrl("/login")
   }
 }

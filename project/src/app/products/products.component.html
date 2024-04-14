@@ -14,7 +14,7 @@
           <th>id</th>
           <th>Name</th>
           <th>Price</th>
-          <th>checked</th>
+          <th *ngIf="appState.authState.roles.includes('ADMIN')">checked</th>
         </tr>
         </thead>
         <tbody>
@@ -22,9 +22,9 @@
           <td>{{product.id}}</td>
           <td>{{product.name}}</td>
           <td>{{product.price}}</td>
-          <td><a [class]="product.checked ?  'btn btn-outline-success' : 'btn btn-outline-danger'" (click)="handleCheckProduct(product)">{{product.checked}}</a></td>
-          <td><a class="btn btn-info" (click)="handleEditProduct(product)" >Edit</a></td>
-          <td><a class="btn btn-danger" (click)="handleDeleteProduct(product)" >Delete</a></td>
+          <td *ngIf="appState.authState.roles.includes('ADMIN')"><a [class]="product.checked ?  'btn btn-outline-success' : 'btn btn-outline-danger'" (click)="handleCheckProduct(product)">{{product.checked}}</a></td>
+          <td *ngIf="appState.authState.roles.includes('ADMIN')"><a class="btn btn-info" (click)="handleEditProduct(product)" >Edit</a></td>
+          <td *ngIf="appState.authState.roles.includes('ADMIN')"><a class="btn btn-danger" (click)="handleDeleteProduct(product)" >Delete</a></td>
         </tr>
         </tbody>
       </table>
