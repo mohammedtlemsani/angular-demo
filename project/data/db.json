@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "id" : "user1" ,
+      "password" : "MTIzNA==",
+      "roles": ["USER"],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMSIsIm5hbWUiOiJtb2hhbW1lZCIsImlhdCI6MTUxNjIzOTAyMiwicm9sZXMiOlsiVVNFUiJdfQ.bttU0Bj0cuffNWpXuGIvHxag-0PaGRuy3cdzhHsyswE"
+    },
+    {
+      "id": "admin",
+      "password": "MTIzNA==",
+      "roles": ["USER","ADMIN"],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsIm5hbWUiOiJtb2hhbW1lZCIsImlhdCI6MTUxNjIzOTAyMiwicm9sZXMiOlsiVVNFUiIsIkFETUlOIl19.z_Po3vsgd_pUixQrzhkLpvMVA4rdUBZWrQE5nw1wMTQ"
+    }
+  ],
   "products": [
     {
       "id": "1",

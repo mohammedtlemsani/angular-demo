@@ -6,6 +6,12 @@ import {ProductState} from "../model/ProductState.model";
   providedIn: 'root'
 })
 export class AppStateService {
+  public authState:any={
+    username:undefined,
+    roles:undefined,
+    isAuthenticated:false,
+    token:undefined
+  }
   public productState:ProductState = {
     products: [],
     keyword :"",
