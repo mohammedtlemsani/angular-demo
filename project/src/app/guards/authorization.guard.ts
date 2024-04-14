@@ -17,7 +17,7 @@ export class AuthorizationGuard {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.appState.authState.roles.includes("ADMIN")){
+    if(this.appState.authState.roles.includes(route.data['requiredRoles'])){
       return true;
     } else {
       this.router.navigateByUrl("/admin/notAuthorized")

@@ -13,8 +13,8 @@ import {NotAuthorizedComponent} from "./not-authorized/not-authorized.component"
 const routes: Routes = [
   {path:"admin",component:AdminTemplateComponent,canActivate:[AuthenticationGuard], children:[
       {path : "products" , component : ProductsComponent},
-      {path : "newProduct" , component : NewProductComponent,canActivate:[AuthorizationGuard]},
-      {path : "editProduct/:id" , component : EditProductComponent,canActivate:[AuthorizationGuard]},
+      {path : "newProduct" , component : NewProductComponent,canActivate:[AuthorizationGuard],data:{requiredRoles:"ADMIN"}},
+      {path : "editProduct/:id" , component : EditProductComponent,canActivate:[AuthorizationGuard],data:{requiredRoles:"ADMIN"}},
       {path : "home" , component : HomeComponent},
       {path:"notAuthorized",component:NotAuthorizedComponent}
     ]},
